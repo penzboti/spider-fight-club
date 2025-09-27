@@ -38,7 +38,7 @@ func _physics_process(delta: float) -> void:
 		velocity.x /= 2**0.5
 		velocity.y /= 2**0.5
 
-	move_and_slide()
+	move_and_collide(Vector2(velocity.x, velocity.y)*0.05)
 
 func _on_leg_pressed() -> void:
 	speed += 5000  # Get speed from leg
