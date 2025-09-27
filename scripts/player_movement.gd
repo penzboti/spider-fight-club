@@ -39,7 +39,6 @@ func _physics_process(_delta: float) -> void:
 func _on_leg_pressed() -> void:
 	speed += 100  # Get speed from leg
 	set_hp(hp-1)  # Buy leg with hp
-	hp_label.text = "HP: " + str(hp)
 	# If hp is 0, die.
 	if hp<=0:  # Should not be less than 0, but who knows...
 		get_tree().reload_current_scene() # Die.
