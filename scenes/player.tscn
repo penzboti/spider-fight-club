@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://be8qbmt0fe144"]
 
-[ext_resource type="Script" uid="uid://difrqw62s02qc" path="res://scripts/player_movement.gd" id="1_g2els"]
+[ext_resource type="Script" uid="uid://bal612li3nebc" path="res://scripts/player_movement.gd" id="1_g2els"]
 [ext_resource type="Script" uid="uid://or3xxoxy4c33" path="res://scripts/player.gd" id="1_qhqgy"]
 [ext_resource type="Texture2D" uid="uid://cguk8kxof0miy" path="res://sprites/circle.png" id="2_qhqgy"]
 
@@ -8,6 +8,8 @@
 
 [node name="Player" type="Node2D"]
 script = ExtResource("1_qhqgy")
+player_id = null
+player_name = null
 
 [node name="CharacterBody2D" type="CharacterBody2D" parent="."]
 script = ExtResource("1_g2els")
