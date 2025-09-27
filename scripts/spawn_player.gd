@@ -6,7 +6,8 @@ const player_scene := preload("res://scenes/player.tscn")
 var player: Node2D
 
 func _ready() -> void:
-	spawn_player(players_root.get_child_count())
+	#spawn_player(players_root.get_child_count())
+	pass
 
 func count_players() -> int:
 	var n := 0
