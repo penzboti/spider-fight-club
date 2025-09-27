@@ -1,38 +1,48 @@
-[gd_scene load_steps=0 format=3 uid="uid://lnwbof5s0xcp"]
+[gd_scene load_steps=3 format=3 uid="uid://cab8ewvl8bw6r"]
+
+[ext_resource type="Script" uid="uid://b7fmugvagytgs" path="res://scripts/global_ready.gd" id="2_xfvoa"]
+[ext_resource type="PackedScene" uid="uid://lnwbof5s0xcp" path="res://scenes/shop_half.tscn" id="3_1l46r"]
 
 [node name="Shop" type="Node2D"]
 
-[node name="Control" type="Control" parent="."]
+[node name="BaseUI" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="Leg" type="Button" parent="Control"]
+[node name="Shop" type="Label" parent="BaseUI"]
 layout_mode = 0
-offset_left = 1048.0
-offset_top = 89.0
-offset_right = 1094.0
-offset_bottom = 120.0
-text = "Leg"
+offset_left = 510.0
+offset_top = -2.0
+offset_right = 550.0
+offset_bottom = 21.0
+text = "Shop"
 
-[node name="Hand" type="Button" parent="Control"]
+[node name="Ready" type="Label" parent="BaseUI"]
 layout_mode = 0
-offset_left = 1048.0
-offset_top = 128.0
-offset_right = 1098.0
-offset_bottom = 159.0
-text = "Hand
-"
+offset_left = 497.0
+offset_top = 623.0
+offset_right = 581.0
+offset_bottom = 646.0
+text = "Ready? 0/2"
+script = ExtResource("2_xfvoa")
 
-[node name="HP" type="Label" parent="Control"]
+[node name="Line2D" type="Line2D" parent="BaseUI"]
+position = Vector2(2, 27.114697)
+scale = Vector2(1, 0.9265232)
+points = PackedVector2Array(531, 66, 530.99994, 369.10004, 531, 604)
+
+[node name="Info" type="Label" parent="BaseUI"]
 layout_mode = 0
-offset_left = 1051.0
-offset_top = 36.0
-offset_right = 1091.0
-offset_bottom = 59.0
-text = "HP: "
+offset_left = 410.0
+offset_top = 34.0
+offset_right = 653.0
+offset_bottom = 57.0
+text = "Spend your hp on legs or hands"
 
-[connection signal="pressed" from="Control/Leg" to="Control/Leg" method="_on_pressed"]
-[connection signal="pressed" from="Control/Leg" to="Control/Hand" method="_on_leg_pressed"]
-[connection signal="pressed" from="Control/Hand" to="Control/Hand" method="_on_pressed"]
+[node name="ShopHalf" parent="." instance=ExtResource("3_1l46r")]
+
+[node name="ShopHalf2" parent="." instance=ExtResource("3_1l46r")]
+position = Vector2(579, 0)
+index = 1

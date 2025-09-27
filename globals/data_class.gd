@@ -4,28 +4,30 @@ class_name PlayerData
 
 @export var id: int
 
-@export var lives: int = 3
-@export var inventory: Array[StringName] = []
-@export var keymap: Dictionary = {}
+@export var lives: int
+@export var inventory: Array[StringName]
+@export var keymap: Dictionary
 
 const keymap_2 = {
 	"up": "ui_up",
 	"down": "ui_down",
 	"left": "ui_left",
-	"right": "ui_right"
+	"right": "ui_right",
+	"use": "use2"
 }
 
 const keymap_1 = {
 	"up": "w",
 	"down": "s",
 	"left": "a",
-	"right": "d"
+	"right": "d",
+	"use": "use"
 }
 
 signal lives_changed(new_lives: int)
 
 func new_run() -> void:
-	lives = 3
+	lives = 10
 	inventory.clear()
 
 func lose_life(count: int = 1) -> void:
