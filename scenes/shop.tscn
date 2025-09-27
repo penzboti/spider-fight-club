@@ -1,9 +1,9 @@
-[gd_scene load_steps=2 format=3 uid="uid://cab8ewvl8bw6r"]
+[gd_scene load_steps=3 format=3 uid="uid://cab8ewvl8bw6r"]
 
-[ext_resource type="Script" uid="uid://brbdopriisw6t" path="res://scripts/init_shop.gd" id="1_lx5au"]
+[ext_resource type="Script" uid="uid://b7fmugvagytgs" path="res://scenes/global_ready.gd" id="2_xfvoa"]
+[ext_resource type="PackedScene" uid="uid://lnwbof5s0xcp" path="res://scenes/shop_half.tscn" id="3_1l46r"]
 
 [node name="Shop" type="Node2D"]
-script = ExtResource("1_lx5au")
 
 [node name="BaseUI" type="Control" parent="."]
 layout_mode = 3
@@ -26,7 +26,23 @@ offset_top = 623.0
 offset_right = 581.0
 offset_bottom = 646.0
 text = "Ready? 0/2"
+script = ExtResource("2_xfvoa")
 
 [node name="Line2D" type="Line2D" parent="BaseUI"]
-position = Vector2(2, -18)
+position = Vector2(2, 27.114697)
+scale = Vector2(1, 0.9265232)
 points = PackedVector2Array(531, 66, 530.99994, 369.10004, 531, 604)
+
+[node name="Info" type="Label" parent="BaseUI"]
+layout_mode = 0
+offset_left = 410.0
+offset_top = 34.0
+offset_right = 653.0
+offset_bottom = 57.0
+text = "Spend your hp on legs or hands"
+
+[node name="ShopHalf" parent="." instance=ExtResource("3_1l46r")]
+
+[node name="ShopHalf2" parent="." instance=ExtResource("3_1l46r")]
+position = Vector2(579, 0)
+index = 1

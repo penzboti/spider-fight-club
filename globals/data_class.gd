@@ -12,14 +12,16 @@ const keymap_2 = {
 	"up": "ui_up",
 	"down": "ui_down",
 	"left": "ui_left",
-	"right": "ui_right"
+	"right": "ui_right",
+	"use": "use2"
 }
 
 const keymap_1 = {
 	"up": "w",
 	"down": "s",
 	"left": "a",
-	"right": "d"
+	"right": "d",
+	"use": "use"
 }
 
 signal lives_changed(new_lives: int)
