@@ -52,31 +52,34 @@ func _on_ready_pressed() -> void:
 		$Control/Ready.text = "Ready"
 
 func apply_buy(part, change):
-	#print(part, change)
+	print(part, change)
 	var node: Label
+	var number: int
 	if part == "leg":
 		node = $Control/Leg/Number
+		number = data.legs + change
 	if part == "arm":
 		node = $Control/Arm/Number
+		number = len(data.arms) + change
 
-	var number = int(node.text) + change
 	if number < 0:
 		return
+	if change < 0:
+		data.remove_limb(part, false)
 	else:
-		if data.lives > 1 || change < 0:
-			data.lives -= change
-		else:
-			return
-		
-	node.text = str(number)
+		data.new_limb(part)
+	print(data.arms, data.legs, data.lives)
+	
 	display_hp()
+	display_limb()
 
 func display_hp():
 	$Control/HP.text = "HP: " + str(data.lives)
 
 func display_limb():
-	#$Control/Leg/Number.text = 0
-	#$Control/Arm/Number.text = 0
+	print("halo", data.legs, data.arms)
+	$Control/Leg/Number.text = str(data.legs)
+	$Control/Arm/Number.text = str(len(data.arms))
 	pass
 
 func display_binds():

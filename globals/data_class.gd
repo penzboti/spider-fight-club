@@ -5,7 +5,8 @@ class_name PlayerData
 
 @export var lives: int
 @export var victories: int
-@export var inventory: Array[StringName]
+@export var arms: Array[int]
+@export var legs: int
 @export var keymap: Dictionary
 
 const keymap_2 = {
@@ -29,8 +30,41 @@ signal death(dead_player: int)
 
 func new_run() -> void:
 	if lives <= 0:
-		inventory.clear()
-	lives = 10
+		arms.clear()
+		lives = 9
+	else:
+		for arm in arms:
+			arm = 3 # max uses
+		lives = 5
+
+func new_limb(type):
+	var n = len(arms) + legs
+	if n >= 8:
+		return
+	if n < 0:
+		return
+	if lives <= 1:
+		return
+	
+	if type == "arm":
+		arms.append(3)
+	if type == "leg":
+		legs += 1
+	lives -= 1
+	print("change")
+
+func remove_limb(part: String, truncate: bool):
+	if truncate:
+		for i in range(arms):
+			if arms[i] == 0:
+				arms.remove_at(i)
+				return
+	
+	if part == "leg":
+		legs -= 1
+	if part == "arm":
+		arms.pop_back()
+	lives += 1
 
 func lose_life(count: int = 1) -> void:
 	lives = lives-count
