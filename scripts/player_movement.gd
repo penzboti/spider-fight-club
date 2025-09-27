@@ -31,3 +31,4 @@ func _on_leg_pressed() -> void:
 
 func _on_hand_pressed() -> void:
 	print("Handy")
+	$"../Control/HP".text = "HP: 69"
