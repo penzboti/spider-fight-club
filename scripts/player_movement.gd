@@ -2,7 +2,10 @@ extends CharacterBody2D
 
 
 var speed = 0
+var hp = 10
 
+func _on_ready() -> void:
+	$"../Control/HP".text = "HP: " + str(hp)
 
 func _physics_process(_delta: float) -> void:
 
@@ -28,7 +31,10 @@ func _physics_process(_delta: float) -> void:
 
 func _on_leg_pressed() -> void:
 	speed += 100
+	hp -= 1
+	$"../Control/HP".text = "HP: " + str(hp)
+	if hp<=0:
+		get_tree().reload_current_scene()
 
 func _on_hand_pressed() -> void:
 	print("Handy")
-	$"../Control/HP".text = "HP: 69"
