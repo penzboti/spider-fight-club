@@ -11,7 +11,7 @@
 script = ExtResource("1_4dvvg")
 
 [node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D"]
-scale = Vector2(0.5, 0.5)
+scale = Vector2(0.25, 0.25)
 texture = ExtResource("2_4dvvg")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
@@ -50,10 +50,10 @@ offset_bottom = 59.0
 text = "HP: "
 
 [connection signal="ready" from="CharacterBody2D" to="CharacterBody2D" method="_on_ready"]
-[connection signal="pressed" from="Control/Leg" to="CharacterBody2D" method="_on_leg_pressed"]
 [connection signal="pressed" from="Control/Leg" to="CharacterBody2D" method="_on_button_pressed"]
+[connection signal="pressed" from="Control/Leg" to="CharacterBody2D" method="_on_leg_pressed"]
 [connection signal="pressed" from="Control/Leg" to="Control/Leg" method="_on_pressed"]
 [connection signal="pressed" from="Control/Leg" to="Control/Hand" method="_on_leg_pressed"]
-[connection signal="pressed" from="Control/Hand" to="CharacterBody2D" method="_on_hand_pressed"]
 [connection signal="pressed" from="Control/Hand" to="CharacterBody2D" method="_on_button_pressed"]
+[connection signal="pressed" from="Control/Hand" to="CharacterBody2D" method="_on_hand_pressed"]
 [connection signal="pressed" from="Control/Hand" to="Control/Hand" method="_on_pressed"]
