@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://bmqlwhekg3p6b"]
+
+[ext_resource type="Script" uid="uid://crdhfrnfe8fok" path="res://scripts/spawn_player.gd" id="1_bl13t"]
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_bl13t")
+
+[node name="Players" type="Node2D" parent="."]
