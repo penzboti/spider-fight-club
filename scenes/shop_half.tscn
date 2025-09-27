@@ -97,3 +97,5 @@ offset_top = 500.0
 offset_right = 134.0
 offset_bottom = 523.0
 text = "Your binds"
+
+[connection signal="pressed" from="Control/Ready" to="." method="_on_ready_pressed"]

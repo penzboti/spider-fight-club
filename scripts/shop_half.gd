@@ -45,6 +45,12 @@ func _process(_delta: float) -> void:
 			else:
 				$Control/Ready.text = "Ready"
 
+func _on_ready_pressed() -> void:
+	if $Control/Ready.button_pressed:
+		$Control/Ready.text = "Cancel"
+	else:
+		$Control/Ready.text = "Ready"
+
 func apply_buy(part, change):
 	#print(part, change)
 	var node: Label
