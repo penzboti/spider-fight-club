@@ -17,8 +17,6 @@ config/icon="res://sprites/icon.svg"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/wakatime/plugin.cfg")
-
 [rendering]
 
 renderer/rendering_method="gl_compatibility"

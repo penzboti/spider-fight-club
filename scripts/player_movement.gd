@@ -1,11 +1,19 @@
 extends CharacterBody2D
 
-
+# Player speed initially 0, can be increased by leg
 var speed = 0
+# HP is decreased when leg
+var hp = 10
 
+# TODO: Set using function
+# Set text using hp_label.text = "HP: " + str(hp)
+var hp_label
+
+func _on_ready() -> void:
+	hp_label = $"../Control/HP"  # Set hp_label
+	hp_label.text = "HP: " + str(hp)  # Set initial hp value
 
 func _physics_process(_delta: float) -> void:
-
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	var direction_x := Input.get_axis("ui_left", "ui_right")
@@ -27,7 +35,13 @@ func _physics_process(_delta: float) -> void:
 	move_and_slide()
 
 func _on_leg_pressed() -> void:
-	speed += 100
+	speed += 100  # Get speed from leg
+	hp -= 1  # Buy leg with hp
+	hp_label.text = "HP: " + str(hp)
+	# If hp is 0, die.
+	if hp<=0:  # Should not be less than 0, but who knows...
+		get_tree().reload_current_scene() # Die.
 
 func _on_hand_pressed() -> void:
+	# TODO
 	print("Handy")
