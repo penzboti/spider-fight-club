@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 # Player speed initially 0, can be increased by leg
-var speed = 5000
+var speed = 10000
 var inertia: float = float(1) / float(25)
 
 func _physics_process(delta: float) -> void:
@@ -29,4 +29,4 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed(keymap.use):
 		get_parent().data.lose_life(1)
 
-	move_and_collide(Vector2(velocity.x, velocity.y)*0.05)
+	move_and_collide(velocity * delta)
