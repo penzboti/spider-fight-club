@@ -40,3 +40,21 @@ offset_top = 14.0
 offset_right = 47.0
 offset_bottom = 37.0
 text = "hape"
+
+[node name="Red_hp_bar" type="ColorRect" parent="CharacterBody2D/Control"]
+z_index = 1
+layout_mode = 0
+offset_left = -200.0
+offset_top = -150.0
+offset_right = -160.0
+offset_bottom = -110.0
+scale = Vector2(10, 1)
+color = Color(0.52156866, 0, 0, 0.36078432)
+
+[node name="Green_hp_bar" type="ColorRect" parent="CharacterBody2D/Control"]
+z_index = 1
+layout_mode = 0
+offset_top = -150.0
+offset_right = 40.0
+offset_bottom = -110.0
+color = Color(0, 1, 0, 1)

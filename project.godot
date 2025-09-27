@@ -19,10 +19,6 @@ config/icon="res://sprites/icon.svg"
 
 PlayerManager="*res://globals/player_manager.gd"
 
-[editor_plugins]
-
-enabled=PackedStringArray("res://addons/wakatime/plugin.cfg")
-
 [input]
 
 w={
