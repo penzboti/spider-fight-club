@@ -1,38 +1,32 @@
-[gd_scene format=3 uid="uid://lnwbof5s0xcp"]
+[gd_scene load_steps=2 format=3 uid="uid://cab8ewvl8bw6r"]
+
+[ext_resource type="Script" uid="uid://brbdopriisw6t" path="res://scripts/init_shop.gd" id="1_lx5au"]
 
 [node name="Shop" type="Node2D"]
+script = ExtResource("1_lx5au")
 
-[node name="Control" type="Control" parent="."]
+[node name="BaseUI" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="Leg" type="Button" parent="Control"]
+[node name="Shop" type="Label" parent="BaseUI"]
 layout_mode = 0
-offset_left = 1048.0
-offset_top = 89.0
-offset_right = 1094.0
-offset_bottom = 120.0
-text = "Leg"
+offset_left = 510.0
+offset_top = -2.0
+offset_right = 550.0
+offset_bottom = 21.0
+text = "Shop"
 
-[node name="Hand" type="Button" parent="Control"]
+[node name="Ready" type="Label" parent="BaseUI"]
 layout_mode = 0
-offset_left = 1048.0
-offset_top = 128.0
-offset_right = 1098.0
-offset_bottom = 159.0
-text = "Hand
-"
+offset_left = 497.0
+offset_top = 623.0
+offset_right = 581.0
+offset_bottom = 646.0
+text = "Ready? 0/2"
 
-[node name="HP" type="Label" parent="Control"]
-layout_mode = 0
-offset_left = 1051.0
-offset_top = 36.0
-offset_right = 1091.0
-offset_bottom = 59.0
-text = "HP: "
-
-[connection signal="pressed" from="Control/Leg" to="Control/Leg" method="_on_pressed"]
-[connection signal="pressed" from="Control/Leg" to="Control/Hand" method="_on_leg_pressed"]
-[connection signal="pressed" from="Control/Hand" to="Control/Hand" method="_on_pressed"]
+[node name="Line2D" type="Line2D" parent="BaseUI"]
+position = Vector2(2, -18)
+points = PackedVector2Array(531, 66, 530.99994, 369.10004, 531, 604)
