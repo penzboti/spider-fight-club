@@ -40,6 +40,10 @@ func _process(_delta: float) -> void:
 		if ui_index == len(ui)-1:
 			#$Control/Ready.emit_signal("toggled", not $Control/Ready.button_pressed)
 			$Control/Ready.button_pressed = not $Control/Ready.button_pressed
+			if $Control/Ready.button_pressed:
+				$Control/Ready.text = "Cancel"
+			else:
+				$Control/Ready.text = "Ready"
 
 func apply_buy(part, change):
 	#print(part, change)

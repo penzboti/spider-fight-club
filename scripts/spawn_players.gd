@@ -16,13 +16,13 @@ func spawn_player(i: int) -> void:
 	player.index = i;
 	
 	player.get_node("CharacterBody2D/Control/Name").text = "player " + str(i);
-	print("player " + str(i))
 	
 	# Set start position
 	if player.has_method("set_global_position"):
 		player.global_position = Vector2(300*(i+1), 300)
 	
 	add_child(player)
+	
 	if not player.data.death.is_connected(_on_death):
 		player.data.death.connect(_on_death)
 	

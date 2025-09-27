@@ -33,8 +33,7 @@ func new_run() -> void:
 	lives = 10
 
 func lose_life(count: int = 1) -> void:
-	lives = max(0, lives - count)
 	lives = lives-count
+	emit_signal("lives_changed", lives)
 	if lives < 1:
 		emit_signal("death", id)
-	emit_signal("lives_changed", lives)
