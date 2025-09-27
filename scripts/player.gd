@@ -1,13 +1,16 @@
 extends Node2D
 
-@export var index: int = 1;
+@export var index: int;
 var data: PlayerData
 
 func _ready() -> void:
 	data = PlayerManager.get_or_create_player(index)
-	# Hook signals to update UI
+	
+	# Hook signals
 	if not data.lives_changed.is_connected(_on_lives_changed):
 		data.lives_changed.connect(_on_lives_changed)
+	
+	# debug
 	_on_lives_changed(data.lives)
 
 

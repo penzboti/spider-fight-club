@@ -5,6 +5,7 @@ const player_scene := preload("res://scenes/player.tscn")
 func _ready() -> void:
 	spawn_player(get_child_count())
 	spawn_player(get_child_count())
+	# TODO: spawn a map
 	pass
 
 func spawn_player(i: int) -> void:
@@ -13,7 +14,7 @@ func spawn_player(i: int) -> void:
 	player.index = i;
 	
 	player.get_node("CharacterBody2D/Control/Name").text = str(i);
-	print(i)
+	print("player " + str(i))
 	
 	# Set start position
 	if player.has_method("set_global_position"):

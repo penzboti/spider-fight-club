@@ -4,7 +4,6 @@ class_name PlayerData
 
 @export var id: int
 
-@export var score: int = 0
 @export var lives: int = 3
 @export var inventory: Array[StringName] = []
 @export var keymap: Dictionary = {}
@@ -23,11 +22,9 @@ const keymap_1 = {
 	"right": "d"
 }
 
-#signal score_changed(new_score: int)
 signal lives_changed(new_lives: int)
 
 func new_run() -> void:
-	score = 0
 	lives = 3
 	inventory.clear()
 
