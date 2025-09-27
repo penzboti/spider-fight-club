@@ -8,8 +8,6 @@
 
 [node name="Player" type="Node2D"]
 script = ExtResource("1_qhqgy")
-player_id = null
-player_name = null
 
 [node name="CharacterBody2D" type="CharacterBody2D" parent="."]
 script = ExtResource("1_g2els")
@@ -21,3 +19,15 @@ texture = ExtResource("2_qhqgy")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
 scale = Vector2(8, 8)
 shape = SubResource("CircleShape2D_dqkch")
+
+[node name="Control" type="Control" parent="CharacterBody2D"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Name" type="Label" parent="CharacterBody2D/Control"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "halo"

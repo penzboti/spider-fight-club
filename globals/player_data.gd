@@ -7,6 +7,21 @@ class_name PlayerData
 @export var score: int = 0
 @export var lives: int = 3
 @export var inventory: Array[StringName] = []
+@export var keymap: Dictionary = {}
+
+const keymap_2 = {
+	"up": "ui_up",
+	"down": "ui_down",
+	"left": "ui_left",
+	"right": "ui_right"
+}
+
+const keymap_1 = {
+	"up": "w",
+	"down": "s",
+	"left": "a",
+	"right": "d"
+}
 
 #signal score_changed(new_score: int)
 signal lives_changed(new_lives: int)
