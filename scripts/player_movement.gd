@@ -2,16 +2,18 @@ extends CharacterBody2D
 
 # Player speed initially 0, can be increased by leg
 var speed = 0
-# HP is decreased when leg
-var hp = 10
 
-# TODO: Set using function
-# Set text using hp_label.text = "HP: " + str(hp)
+# HP is decreased when leg
+# Set using set_hp(new_hp)
+var hp = 10
+func set_hp(new_hp):
+	hp = new_hp
+	$"../Control/HP".text = "HP: " + str(hp)
+
 var hp_label
 
 func _on_ready() -> void:
-	hp_label = $"../Control/HP"  # Set hp_label
-	hp_label.text = "HP: " + str(hp)  # Set initial hp value
+	set_hp(hp)  # Set initial HP value
 
 func _physics_process(_delta: float) -> void:
 	# Get the input direction and handle the movement/deceleration.
@@ -36,7 +38,7 @@ func _physics_process(_delta: float) -> void:
 
 func _on_leg_pressed() -> void:
 	speed += 100  # Get speed from leg
-	hp -= 1  # Buy leg with hp
+	set_hp(hp-1)  # Buy leg with hp
 	hp_label.text = "HP: " + str(hp)
 	# If hp is 0, die.
 	if hp<=0:  # Should not be less than 0, but who knows...
