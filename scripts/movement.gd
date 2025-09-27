@@ -37,6 +37,9 @@ func _physics_process(delta: float) -> void:
 	if direction_x!=0 and direction_y!=0:
 		velocity.x /= 2**0.5
 		velocity.y /= 2**0.5
+		
+	if Input.is_action_just_pressed(keymap.use):
+		get_parent().data.lose_life(get_parent().data.lives)
 
 	move_and_collide(Vector2(velocity.x, velocity.y)*0.05)
 

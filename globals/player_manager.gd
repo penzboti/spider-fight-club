@@ -1,4 +1,3 @@
-# player_manager.gd
 extends Node
 class_name PlayerManagerClass
 
@@ -16,12 +15,6 @@ func get_or_create_player(id: int) -> PlayerData:
 		players[id] = pd
 	return players[id]
 
-func has_player(id: StringName) -> bool:
-	return players.has(id)
-
-func remove_player(id: StringName) -> void:
-	players.erase(id)
-
-func reset_all_runs() -> void:
-	for pd: PlayerData in players.values():
-		pd.new_run()
+#func reset_all_runs() -> void:
+	#for pd: PlayerData in players.values():
+		#pd.new_run()

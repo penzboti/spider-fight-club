@@ -16,4 +16,4 @@ func _on_toggled(toggled_on: bool):
 	number += delta
 	$".".text = "Ready? " + str(number) + "/2"
 	if number == 2:
-		print("scene change here")
+		get_tree().change_scene_to_file("res://scenes/test.tscn")
