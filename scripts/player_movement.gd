@@ -1,11 +1,12 @@
 extends CharacterBody2D
 
-
 var speed = 0
 var hp = 10
+var hp_label
 
 func _on_ready() -> void:
-	$"../Control/HP".text = "HP: " + str(hp)
+	hp_label = $"../Control/HP"
+	hp_label.text = "HP: " + str(hp)
 
 func _physics_process(_delta: float) -> void:
 
@@ -32,7 +33,7 @@ func _physics_process(_delta: float) -> void:
 func _on_leg_pressed() -> void:
 	speed += 100
 	hp -= 1
-	$"../Control/HP".text = "HP: " + str(hp)
+	hp_label.text = "HP: " + str(hp)
 	if hp<=0:
 		get_tree().reload_current_scene()
 
