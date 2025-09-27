@@ -9,8 +9,9 @@ var inertia: float = float(1) / float(25)
 var hp = 10
 func set_hp(new_hp):
 	hp = new_hp
-	print("setting hp")
 	$Control/HP.text = "HP: " + str(hp)
+	$Control/Green_hp_bar.scale.x = hp
+	$Control/Green_hp_bar.position.x = hp*-20
 
 var hp_label
 
