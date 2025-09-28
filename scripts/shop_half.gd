@@ -9,6 +9,7 @@ var ui_index = 0
 func _ready() -> void:
 	data = PlayerManager.get_or_create_player(index)
 	display_hp()
+	display_limb()
 	display_binds()
 	$Control/Wins.text = "Wins: " + str(data.victories)
 

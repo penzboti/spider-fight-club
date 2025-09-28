@@ -7,7 +7,7 @@ size = Vector2(1162.5, 20)
 
 [node name="Node2D" type="Node2D"]
 
-[node name="Players" type="Node2D" parent="."]
+[node name="PlayerSpawnManager" type="Node2D" parent="."]
 script = ExtResource("1_bl13t")
 
 [node name="PlayareaWalls" type="StaticBody2D" parent="."]
@@ -30,3 +30,9 @@ shape = SubResource("RectangleShape2D_errlg")
 position = Vector2(-10, 345.99997)
 rotation = -1.5722947
 shape = SubResource("RectangleShape2D_errlg")
+
+[node name="PlayerSpawner" type="Node2D" parent="."]
+position = Vector2(157, 353)
+
+[node name="PlayerSpawner2" type="Node2D" parent="."]
+position = Vector2(958, 357)

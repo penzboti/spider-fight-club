@@ -25,8 +25,6 @@ const keymap_1 = {
 	"use": "use"
 }
 
-const max_hp = 9
-
 signal lives_changed(new_lives: int)
 signal death(dead_player: int)
 
@@ -35,6 +33,7 @@ func new_run() -> void:
 		arms.clear()
 		lives = 9
 	else:
+		remove_limb("arm", true)
 		for arm in arms:
 			arm = 3 # max uses
 		lives = 5
@@ -56,7 +55,7 @@ func new_limb(type):
 
 func remove_limb(part: String, truncate: bool):
 	if truncate:
-		for i in range(arms):
+		for i in range(len(arms)):
 			if arms[i] == 0:
 				arms.remove_at(i)
 				return
