@@ -4,23 +4,19 @@ extends CharacterBody2D
 var speed = 0
 var inertia: float = float(1) / float(25)
 
+func _ready() -> void:
+	collision_layer = 1
+	collision_mask = 1
+	for i in %LimbAttachPoints.get_children() as Array[Marker2D]:
+		var offset = i.position - position
+		i.set_meta("offset", offset*scale.x)
+
 func _physics_process(delta: float) -> void:
 	var parent = get_parent()
 	var data = parent.data
 	var keymap = data.keymap
 
-
-func _ready() -> void:
-	# Set collision layer for player (layer 1) and avoid limbs (layer 2)
-	collision_layer = 1
-	collision_mask = 1  # Only collide with other players/environment, not limbs
-	set_hp(hp)  # Set initial HP value
-	for i in %LimbAttachPoints.get_children() as Array[Marker2D]:
-		var offset = i.position - position
-		i.set_meta("offset", offset*scale.x)
-
 	speed = data.legs* 5000
-
 
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
@@ -40,19 +36,10 @@ func _ready() -> void:
 		velocity.x /= 2**0.5
 		velocity.y /= 2**0.5
 
-	move_and_collide(velocity * delta)
-	for i in %LimbAttachPoints.get_children():
-		i.position = position + i.get_meta("offset")
-
-func _on_leg_pressed() -> void:
-	speed += 5000  # Get speed from leg
-	set_hp(hp-1)  # Buy leg with hp
-	# If hp is 0, die.
-	if hp<=0:  # Should not be less than 0, but who knows...
-		get_tree().reload_current_scene() # Die.
-
 	# debug
 	if Input.is_action_just_pressed(keymap.use):
 		get_parent().data.lose_life(1)
 
-	
+	move_and_collide(velocity * delta)
+	for i in %LimbAttachPoints.get_children():
+		i.position = position + i.get_meta("offset")
