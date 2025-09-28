@@ -34,12 +34,12 @@ func new_run() -> void:
 	if lives <= 0:
 		arms.clear()
 		legs = 0
-		lives = 5
+		lives = 8
 	else:
 		remove_limb("arm", true)
 		for arm in arms:
 			arm = arm_uses
-		lives += 2
+		lives += 3
 
 func new_limb(type) -> bool:
 	var n = len(arms) + legs

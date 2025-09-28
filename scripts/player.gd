@@ -45,6 +45,7 @@ func _process(delta: float) -> void:
 	display_hp()
 	if Input.is_action_just_pressed(data.keymap.use):
 		flail_arms_toward_enemies()
+	_update_invincibility(delta)
 
 func flail_arms_toward_enemies() -> void:
 	# Find any other player
@@ -63,7 +64,7 @@ func flail_arms_toward_enemies() -> void:
 					if child.has_method("fling"):
 						var direction = (enemy.global_position - child.global_position).normalized()
 						child.fling(direction * 500)
-	_update_invincibility(delta)
+
 
 func take_damage() -> void:
 	if is_invincible():
@@ -99,6 +100,7 @@ func spawn_limb(type) -> Node2D:
 	if available_slots.size() == 0:
 		print("No available limb slots")
 		return null
+	available_slots.shuffle()
 	match type:
 		"leg":
 			var new_leg = limb.instantiate()
