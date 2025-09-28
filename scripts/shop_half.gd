@@ -10,6 +10,7 @@ func _ready() -> void:
 	data = PlayerManager.get_or_create_player(index)
 	display_hp()
 	display_binds()
+	$Control/Wins.text = "Wins: " + str(data.victories)
 
 func _process(_delta: float) -> void:
 	var keymap = data.keymap
@@ -52,14 +53,11 @@ func _on_ready_pressed() -> void:
 		$Control/Ready.text = "Ready"
 
 func apply_buy(part, change):
-	print(part, change)
-	var node: Label
+	#print(part, change)
 	var number: int
 	if part == "leg":
-		node = $Control/Leg/Number
 		number = data.legs + change
 	if part == "arm":
-		node = $Control/Arm/Number
 		number = len(data.arms) + change
 
 	if number < 0:
@@ -68,7 +66,7 @@ func apply_buy(part, change):
 		data.remove_limb(part, false)
 	else:
 		data.new_limb(part)
-	print(data.arms, data.legs, data.lives)
+	#print(data.arms, data.legs, data.lives)
 	
 	display_hp()
 	display_limb()
@@ -77,7 +75,6 @@ func display_hp():
 	$Control/HP.text = "HP: " + str(data.lives)
 
 func display_limb():
-	print("halo", data.legs, data.arms)
 	$Control/Leg/Number.text = str(data.legs)
 	$Control/Arm/Number.text = str(len(data.arms))
 	pass

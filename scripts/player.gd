@@ -6,9 +6,10 @@ var data: PlayerData
 var hp
 
 func display_hp():
-	$CharacterBody2D/Control/HP.text = "HP: " + str(hp)
+	$CharacterBody2D/Control/Red_hp_bar.position = $CharacterBody2D.position + Vector2(-data.max_hp*20, -160)
+	$CharacterBody2D/Control/Red_hp_bar.scale.x = data.max_hp
 	$CharacterBody2D/Control/Green_hp_bar.scale.x = hp
-	$CharacterBody2D/Control/Green_hp_bar.position.x = hp*-20
+	$CharacterBody2D/Control/Green_hp_bar.position = $CharacterBody2D/Control/Red_hp_bar.position
 
 func _ready() -> void:
 	data = PlayerManager.get_or_create_player(index)

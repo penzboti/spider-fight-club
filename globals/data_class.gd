@@ -25,6 +25,8 @@ const keymap_1 = {
 	"use": "use"
 }
 
+const max_hp = 9
+
 signal lives_changed(new_lives: int)
 signal death(dead_player: int)
 
@@ -51,7 +53,6 @@ func new_limb(type):
 	if type == "leg":
 		legs += 1
 	lives -= 1
-	print("change")
 
 func remove_limb(part: String, truncate: bool):
 	if truncate:

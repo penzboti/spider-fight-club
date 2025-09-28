@@ -27,24 +27,6 @@ anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="Name" type="Label" parent="CharacterBody2D/Control"]
-layout_mode = 0
-offset_left = -52.0
-offset_top = -64.0
-offset_right = 72.0
-offset_bottom = -4.0
-theme_override_font_sizes/font_size = 35
-text = "nev"
-
-[node name="HP" type="Label" parent="CharacterBody2D/Control"]
-layout_mode = 0
-offset_left = -56.0
-offset_top = -4.0
-offset_right = 68.0
-offset_bottom = 76.0
-theme_override_font_sizes/font_size = 35
-text = "hape"
-
 [node name="Red_hp_bar" type="ColorRect" parent="CharacterBody2D/Control"]
 z_index = 1
 layout_mode = 0
@@ -58,7 +40,8 @@ color = Color(0.52156866, 0, 0, 0.36078432)
 [node name="Green_hp_bar" type="ColorRect" parent="CharacterBody2D/Control"]
 z_index = 1
 layout_mode = 0
-offset_top = -150.0
-offset_right = 40.0
-offset_bottom = -110.0
+offset_left = -200.0
+offset_top = -152.0
+offset_right = -160.0
+offset_bottom = -112.0
 color = Color(0, 1, 0, 1)

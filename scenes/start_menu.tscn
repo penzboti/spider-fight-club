@@ -11,7 +11,7 @@ anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="Label" type="Label" parent="Control"]
+[node name="Name" type="Label" parent="Control"]
 layout_mode = 1
 offset_left = 471.0
 offset_top = 45.0
@@ -26,5 +26,13 @@ offset_top = 137.0
 offset_right = 554.0
 offset_bottom = 168.0
 text = "Start"
+
+[node name="Info" type="Label" parent="Control"]
+layout_mode = 0
+offset_left = 480.0
+offset_top = 613.0
+offset_right = 611.0
+offset_bottom = 636.0
+text = "Press 'E' or '.'"
 
 [connection signal="pressed" from="Control/Button" to="." method="_on_button_pressed"]

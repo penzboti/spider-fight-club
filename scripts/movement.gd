@@ -1,11 +1,15 @@
 extends CharacterBody2D
 
-# Player speed initially 0, can be increased by leg
-var speed = 10000
+# Player speed initially 0, can be increased by more legs
+var speed = 0
 var inertia: float = float(1) / float(25)
 
 func _physics_process(delta: float) -> void:
-	var keymap = get_parent().data.keymap
+	var parent = get_parent()
+	var data = parent.data
+	var keymap = data.keymap
+
+	speed = data.legs* 5000
 
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
