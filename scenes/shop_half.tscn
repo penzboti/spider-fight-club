@@ -1,20 +1,19 @@
-[gd_scene load_steps=3 format=3 uid="uid://lnwbof5s0xcp"]
+[gd_scene load_steps=5 format=3 uid="uid://lnwbof5s0xcp"]
 
 [ext_resource type="Script" uid="uid://wfalwb55uvlb" path="res://scripts/shop_half.gd" id="1_lbprg"]
-
-[sub_resource type="GDScript" id="GDScript_lbprg"]
-script/source = "extends Button
-"
+[ext_resource type="AudioStream" uid="uid://bp4wyc14dqo0a" path="res://audio/addlimb.wav" id="2_vtv2d"]
+[ext_resource type="AudioStream" uid="uid://d4gt6q17hjrxp" path="res://audio/removelimb.wav" id="3_reept"]
+[ext_resource type="AudioStream" uid="uid://bc7kuiff72cvr" path="res://audio/ready.wav" id="4_reept"]
 
 [node name="ShopHalf" type="Node2D"]
 script = ExtResource("1_lbprg")
 
 [node name="ColorRect" type="ColorRect" parent="."]
-offset_left = 18.0
-offset_top = 127.0
-offset_right = 475.0
-offset_bottom = 259.0
-color = Color(1, 0, 0, 1)
+offset_left = 26.0
+offset_top = 143.0
+offset_right = 565.0
+offset_bottom = 275.0
+color = Color(1, 0, 0, 0.5803922)
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
@@ -24,13 +23,13 @@ offset_bottom = 40.0
 
 [node name="Ready" type="Button" parent="Control"]
 layout_mode = 0
-offset_left = 49.0
-offset_top = 587.0
-offset_right = 105.0
-offset_bottom = 618.0
+offset_left = 239.0
+offset_top = 572.0
+offset_right = 342.0
+offset_bottom = 625.0
+theme_override_font_sizes/font_size = 32
 toggle_mode = true
 text = "Ready"
-script = SubResource("GDScript_lbprg")
 
 [node name="Leg" type="Label" parent="Control"]
 layout_mode = 0
@@ -38,24 +37,27 @@ offset_left = 45.0
 offset_top = 152.0
 offset_right = 85.0
 offset_bottom = 175.0
+theme_override_font_sizes/font_size = 32
 text = "Legs"
-
-[node name="LegInfo" type="Label" parent="Control/Leg"]
-layout_mode = 0
-offset_left = -2.0
-offset_top = 23.0
-offset_right = 341.0
-offset_bottom = 72.0
-text = "Each leg boosts your speed
-Keep in mind, you cannot move without legs"
 
 [node name="Number" type="Label" parent="Control/Leg"]
 layout_mode = 0
-offset_left = 366.0
-offset_top = 22.0
-offset_right = 406.0
-offset_bottom = 45.0
+offset_left = 486.0
+offset_top = 26.0
+offset_right = 526.0
+offset_bottom = 71.0
+theme_override_font_sizes/font_size = 32
 text = "0"
+
+[node name="LegInfo" type="Label" parent="Control"]
+layout_mode = 0
+offset_left = 42.0
+offset_top = 201.0
+offset_right = 576.0
+offset_bottom = 274.0
+theme_override_font_sizes/font_size = 22
+text = "Each leg boosts your speed
+Keep in mind, you cannot move without legs"
 
 [node name="Arm" type="Label" parent="Control"]
 layout_mode = 0
@@ -63,47 +65,65 @@ offset_left = 43.0
 offset_top = 289.0
 offset_right = 93.0
 offset_bottom = 312.0
+theme_override_font_sizes/font_size = 32
 text = "Hands"
 
 [node name="ArmInfo" type="Label" parent="Control/Arm"]
 layout_mode = 0
-offset_left = 1.0
-offset_top = 24.0
-offset_right = 308.0
-offset_bottom = 96.0
-text = "Each hand can be swinged, 
-or thrown (when the use button is held)"
+offset_left = 5.0
+offset_top = 59.0
+offset_right = 485.0
+offset_bottom = 132.0
+theme_override_font_sizes/font_size = 22
+text = "Each hand can be swinged to attack"
 
 [node name="Number" type="Label" parent="Control/Arm"]
 layout_mode = 0
-offset_left = 364.0
-offset_top = 31.0
-offset_right = 404.0
-offset_bottom = 54.0
+offset_left = 491.0
+offset_top = 44.0
+offset_right = 531.0
+offset_bottom = 89.0
+theme_override_font_sizes/font_size = 32
 text = "0"
 
 [node name="HP" type="Label" parent="Control"]
 layout_mode = 0
-offset_left = 36.0
-offset_top = 56.0
-offset_right = 76.0
-offset_bottom = 79.0
+offset_left = 37.0
+offset_top = 86.0
+offset_right = 114.0
+offset_bottom = 131.0
+theme_override_font_sizes/font_size = 32
 text = "hape"
 
 [node name="Binds" type="Label" parent="Control"]
 layout_mode = 0
-offset_left = 51.0
-offset_top = 455.0
-offset_right = 134.0
-offset_bottom = 478.0
+offset_left = 50.0
+offset_top = 445.0
+offset_right = 561.0
+offset_bottom = 480.0
+theme_override_font_sizes/font_size = 22
 text = "Your binds"
+autowrap_mode = 3
 
 [node name="Wins" type="Label" parent="Control"]
 layout_mode = 0
-offset_left = 361.0
-offset_top = 60.0
-offset_right = 401.0
-offset_bottom = 83.0
+offset_left = 379.0
+offset_top = 84.0
+offset_right = 450.0
+offset_bottom = 129.0
+theme_override_font_sizes/font_size = 32
 text = "wins"
+
+[node name="AddLimb" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_vtv2d")
+volume_db = -8.0
+
+[node name="RemoveLimb" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_reept")
+volume_db = -8.0
+
+[node name="Ready" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_reept")
+volume_db = -5.0
 
 [connection signal="pressed" from="Control/Ready" to="." method="_on_ready_pressed"]

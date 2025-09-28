@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://be8qbmt0fe144"]
+[gd_scene load_steps=6 format=3 uid="uid://be8qbmt0fe144"]
 
 [ext_resource type="Script" uid="uid://bal612li3nebc" path="res://scripts/movement.gd" id="1_g2els"]
 [ext_resource type="Script" uid="uid://or3xxoxy4c33" path="res://scripts/player.gd" id="1_qhqgy"]
 [ext_resource type="Texture2D" uid="uid://cguk8kxof0miy" path="res://sprites/circle.png" id="2_qhqgy"]
+[ext_resource type="AudioStream" uid="uid://dfjincti6kiwc" path="res://audio/minuszhp.wav" id="4_dqkch"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_dqkch"]
 
@@ -46,9 +47,6 @@ offset_right = -160.0
 offset_bottom = -112.0
 color = Color(0, 1, 0, 1)
 
-
-
-
 [node name="LimbAttachPoints" type="Node2D" parent="CharacterBody2D"]
 unique_name_in_owner = true
 
@@ -91,3 +89,7 @@ metadata/offset = Vector2(0, 0)
 position = Vector2(0, -80)
 scale = Vector2(0.25, 0.25)
 metadata/offset = Vector2(0, 0)
+
+[node name="damage" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_dqkch")
+volume_db = -5.0

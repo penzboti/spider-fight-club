@@ -25,6 +25,7 @@ func _ready() -> void:
 	if not data.lives_changed.is_connected(_on_lives_changed):
 		data.lives_changed.connect(_on_lives_changed)
 
+
 	for i in range(data.legs):
 		var leg = spawn_limb("leg")
 		leg.identifier = "{data.id}_leg_{i}"
@@ -35,12 +36,15 @@ func _ready() -> void:
 	set_meta("id", data.id)
 	$CharacterBody2D.set_meta("id", data.id)
 
-
 func _process(_delta: float) -> void:
 	display_hp()
+	if Input.is_action_just_pressed(data.keymap.use):
+		take_damage()
+
 
 func take_damage(i: int = 1) -> void:
 	data.lose_life(i)
+	$damage.play()
 
 
 func _on_lives_changed(v: int) -> void:

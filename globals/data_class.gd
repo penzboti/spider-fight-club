@@ -25,33 +25,37 @@ const keymap_1 = {
 	"use": "use"
 }
 
+const arm_uses = 3
+
 signal lives_changed(new_lives: int)
 signal death(dead_player: int)
 
 func new_run() -> void:
 	if lives <= 0:
 		arms.clear()
+		legs = 0
 		lives = 9
 	else:
 		remove_limb("arm", true)
 		for arm in arms:
-			arm = 3 # max uses
+			arm = arm_uses
 		lives = 5
 
-func new_limb(type):
+func new_limb(type) -> bool:
 	var n = len(arms) + legs
 	if n >= 8:
-		return
+		return false
 	if n < 0:
-		return
+		return false
 	if lives <= 1:
-		return
+		return false
 	
 	if type == "arm":
-		arms.append(3)
+		arms.append(arm_uses)
 	if type == "leg":
 		legs += 1
 	lives -= 1
+	return true
 
 func remove_limb(part: String, truncate: bool):
 	if truncate:

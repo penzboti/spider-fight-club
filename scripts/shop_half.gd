@@ -20,12 +20,12 @@ func _process(_delta: float) -> void:
 		ui_index -= 1
 		if ui_index < 0:
 			ui_index = len(ui)-1
-		$ColorRect.global_position = ui[ui_index].global_position + Vector2(-30,-30)
+		$ColorRect.global_position.y = ui[ui_index].global_position.y -15
 	if Input.is_action_just_pressed(keymap.down):
 		ui_index += 1
 		if ui_index >= len(ui):
 			ui_index = 0
-		$ColorRect.global_position = ui[ui_index].global_position + Vector2(-30,-30)
+		$ColorRect.global_position.y = ui[ui_index].global_position.y -15
 
 	if Input.is_action_just_pressed(keymap.left):
 		if ui_index == 0:
@@ -43,12 +43,14 @@ func _process(_delta: float) -> void:
 			#$Control/Ready.emit_signal("toggled", not $Control/Ready.button_pressed)
 			$Control/Ready.button_pressed = not $Control/Ready.button_pressed
 			if $Control/Ready.button_pressed:
+				$Ready.play()
 				$Control/Ready.text = "Cancel"
 			else:
 				$Control/Ready.text = "Ready"
 
 func _on_ready_pressed() -> void:
 	if $Control/Ready.button_pressed:
+		$Ready.play()
 		$Control/Ready.text = "Cancel"
 	else:
 		$Control/Ready.text = "Ready"
@@ -65,8 +67,11 @@ func apply_buy(part, change):
 		return
 	if change < 0:
 		data.remove_limb(part, false)
+		$RemoveLimb.play()
 	else:
-		data.new_limb(part)
+		var res = data.new_limb(part)
+		if res:
+			$AddLimb.play()
 	#print(data.arms, data.legs, data.lives)
 	
 	display_hp()
@@ -84,10 +89,9 @@ func display_binds():
 	var movetype = "none"
 	var usetype = "none"
 	if data.keymap.get("up") == "w":
-		movetype = "WASD"
-		usetype = "E"
+		movetype = "'a' / 'd'"
+		usetype = "'w' / 's'"
 	else:
-		movetype = "arrow keys"
-		usetype = "."
-	$Control/Binds.text = "Move with " + movetype + ", and use/press with '" + usetype + "'
-	Change the limb counts with horizontal movement keys"
+		movetype = "left / right"
+		usetype = "up / down"
+	$Control/Binds.text = "navigate with " + usetype + "\nadd / remove limbs with "+ movetype
