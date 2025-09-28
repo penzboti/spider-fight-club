@@ -43,12 +43,14 @@ func _process(_delta: float) -> void:
 			#$Control/Ready.emit_signal("toggled", not $Control/Ready.button_pressed)
 			$Control/Ready.button_pressed = not $Control/Ready.button_pressed
 			if $Control/Ready.button_pressed:
+				$Ready.play()
 				$Control/Ready.text = "Cancel"
 			else:
 				$Control/Ready.text = "Ready"
 
 func _on_ready_pressed() -> void:
 	if $Control/Ready.button_pressed:
+		$Ready.play()
 		$Control/Ready.text = "Cancel"
 	else:
 		$Control/Ready.text = "Ready"
@@ -65,8 +67,11 @@ func apply_buy(part, change):
 		return
 	if change < 0:
 		data.remove_limb(part, false)
+		$RemoveLimb.play()
 	else:
-		data.new_limb(part)
+		var res = data.new_limb(part)
+		if res:
+			$AddLimb.play()
 	#print(data.arms, data.legs, data.lives)
 	
 	display_hp()

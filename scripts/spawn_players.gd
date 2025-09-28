@@ -38,4 +38,5 @@ func _on_death(id):
 		if player.index != id:
 			player.data.victories += 1
 		player.data.new_run()
+	get_tree().get_root().get_node("Audio/death").play()
 	get_tree().change_scene_to_file("res://scenes/shop.tscn")

@@ -26,12 +26,14 @@ func _ready() -> void:
 	if not data.lives_changed.is_connected(_on_lives_changed):
 		data.lives_changed.connect(_on_lives_changed)
 
-
 func _process(_delta: float) -> void:
 	display_hp()
+	if Input.is_action_just_pressed(data.keymap.use):
+		take_damage()
 
 func take_damage() -> void:
 	data.lose_life(1)
+	$damage.play()
 
 
 func _on_lives_changed(v: int) -> void:

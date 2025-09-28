@@ -36,10 +36,6 @@ func _physics_process(delta: float) -> void:
 		velocity.x /= 2**0.5
 		velocity.y /= 2**0.5
 
-	# debug
-	if Input.is_action_just_pressed(keymap.use):
-		get_parent().data.lose_life(1)
-
 	move_and_collide(velocity * delta)
 	for i in %LimbAttachPoints.get_children():
 		i.position = position + i.get_meta("offset")

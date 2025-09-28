@@ -41,20 +41,21 @@ func new_run() -> void:
 			arm = arm_uses
 		lives = 5
 
-func new_limb(type):
+func new_limb(type) -> bool:
 	var n = len(arms) + legs
 	if n >= 8:
-		return
+		return false
 	if n < 0:
-		return
+		return false
 	if lives <= 1:
-		return
+		return false
 	
 	if type == "arm":
 		arms.append(arm_uses)
 	if type == "leg":
 		legs += 1
 	lives -= 1
+	return true
 
 func remove_limb(part: String, truncate: bool):
 	if truncate:

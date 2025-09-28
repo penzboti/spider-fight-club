@@ -1,6 +1,9 @@
-[gd_scene load_steps=2 format=3 uid="uid://lnwbof5s0xcp"]
+[gd_scene load_steps=5 format=3 uid="uid://lnwbof5s0xcp"]
 
 [ext_resource type="Script" uid="uid://wfalwb55uvlb" path="res://scripts/shop_half.gd" id="1_lbprg"]
+[ext_resource type="AudioStream" uid="uid://bp4wyc14dqo0a" path="res://audio/addlimb.wav" id="2_vtv2d"]
+[ext_resource type="AudioStream" uid="uid://d4gt6q17hjrxp" path="res://audio/removelimb.wav" id="3_reept"]
+[ext_resource type="AudioStream" uid="uid://bc7kuiff72cvr" path="res://audio/ready.wav" id="4_reept"]
 
 [node name="ShopHalf" type="Node2D"]
 script = ExtResource("1_lbprg")
@@ -37,16 +40,6 @@ offset_bottom = 175.0
 theme_override_font_sizes/font_size = 32
 text = "Legs"
 
-[node name="LegInfo" type="Label" parent="Control/Leg"]
-layout_mode = 0
-offset_left = -3.0
-offset_top = 49.0
-offset_right = 531.0
-offset_bottom = 122.0
-theme_override_font_sizes/font_size = 22
-text = "Each leg boosts your speed
-Keep in mind, you cannot move without legs"
-
 [node name="Number" type="Label" parent="Control/Leg"]
 layout_mode = 0
 offset_left = 486.0
@@ -55,6 +48,16 @@ offset_right = 526.0
 offset_bottom = 71.0
 theme_override_font_sizes/font_size = 32
 text = "0"
+
+[node name="LegInfo" type="Label" parent="Control"]
+layout_mode = 0
+offset_left = 42.0
+offset_top = 201.0
+offset_right = 576.0
+offset_bottom = 274.0
+theme_override_font_sizes/font_size = 22
+text = "Each leg boosts your speed
+Keep in mind, you cannot move without legs"
 
 [node name="Arm" type="Label" parent="Control"]
 layout_mode = 0
@@ -72,8 +75,7 @@ offset_top = 59.0
 offset_right = 485.0
 offset_bottom = 132.0
 theme_override_font_sizes/font_size = 22
-text = "Each hand can be swinged, 
-or thrown (when the use button is held)"
+text = "Each hand can be swinged to attack"
 
 [node name="Number" type="Label" parent="Control/Arm"]
 layout_mode = 0
@@ -111,5 +113,17 @@ offset_right = 450.0
 offset_bottom = 129.0
 theme_override_font_sizes/font_size = 32
 text = "wins"
+
+[node name="AddLimb" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_vtv2d")
+volume_db = -8.0
+
+[node name="RemoveLimb" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_reept")
+volume_db = -8.0
+
+[node name="Ready" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_reept")
+volume_db = -5.0
 
 [connection signal="pressed" from="Control/Ready" to="." method="_on_ready_pressed"]
