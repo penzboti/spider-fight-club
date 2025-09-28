@@ -31,15 +31,38 @@ func _ready() -> void:
 	for i in range(data.legs):
 		var leg = spawn_limb("leg")
 		leg.identifier = "{data.id}_leg_{i}"
-	for i in data.arms:
+	for i in range(len(data.arms)):
 		var arm = spawn_limb("arm")
 		arm.identifier = "{data.id}_arm_{i}"
 
 	set_meta("id", data.id)
 	$CharacterBody2D.set_meta("id", data.id)
+	
+	# Add to players group for easy enemy detection
+	add_to_group("players")
 
 func _process(delta: float) -> void:
 	display_hp()
+	if Input.is_action_just_pressed(data.keymap.use):
+		flail_arms_toward_enemies()
+
+func flail_arms_toward_enemies() -> void:
+	# Find any other player
+	var enemy = null
+	var all_players = get_tree().get_nodes_in_group("players")
+	for player in all_players:
+		if player != self:
+			enemy = player
+			break
+	
+	# Flail all arms
+	if enemy:
+		for arm in armInstances.values():
+			if arm:
+				for child in arm.get_children():
+					if child.has_method("fling"):
+						var direction = (enemy.global_position - child.global_position).normalized()
+						child.fling(direction * 500)
 	_update_invincibility(delta)
 
 func take_damage() -> void:
@@ -80,14 +103,14 @@ func spawn_limb(type) -> Node2D:
 		"leg":
 			var new_leg = limb.instantiate()
 
-			new_leg.base("leg", Color(0.8, 0.8, 0.2, 1), 3, 20, 5, %LimbAttachPoints.get_child(available_slots[0]))
+			new_leg.base("leg", Color(0.8, 0.8, 0.2, 1), 3, 30.0, 7.0, %LimbAttachPoints.get_child(available_slots[0]))
 			legInstances[available_slots[0]] = new_leg
 
 			add_child(new_leg)
 			return new_leg
 		"arm":
 			var new_arm = limb.instantiate()
-			new_arm.base("arm", Color(0.2, 0.8, 0.2, 1), 4, 18, 5, %LimbAttachPoints.get_child(available_slots[0]))
+			new_arm.base("arm", Color(0.2, 0.8, 0.2, 1), 4, 30.0, 7.0, %LimbAttachPoints.get_child(available_slots[0]))
 			armInstances[available_slots[0]] = new_arm
 			add_child(new_arm)
 			return new_arm
@@ -102,11 +125,16 @@ func handle_arm_collision(arm: Node2D, body: Node) -> bool:
 	if body.has_meta("id") and body.get_meta("id") != self.get_meta("id"):
 		var other_player = body
 		other_player.get_parent().take_damage()
-		data.arms[int(arm.identifier[-1])] -= 1
-		if data.arms[int(arm.identifier[-1])] <= 0:
-			data.arms.remove_at(int(arm.identifier[-1]))
-			arm.queue_free()
-			armInstances.erase(int(arm.identifier[-1]))
+		var arm_index = int(arm.identifier[-1])
+		
+		# Check if the arm index is valid
+		if arm_index >= 0 and arm_index < len(data.arms):
+			data.arms[arm_index] -= 1
+			if data.arms[arm_index] <= 0:
+				# Set to 0 instead of removing to maintain array indices
+				data.arms[arm_index] = 0
+				arm.queue_free()
+				armInstances.erase(arm_index)
 		return true
 	else:
 		return false
