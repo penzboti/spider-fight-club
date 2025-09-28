@@ -1,0 +1,38 @@
+[gd_scene load_steps=2 format=3 uid="uid://bu83i7rrcwahr"]
+
+[ext_resource type="Script" uid="uid://2fjhqeq8nyhp" path="res://scripts/start_menu.gd" id="1_ouf4f"]
+
+[node name="StartMenu" type="Node2D"]
+script = ExtResource("1_ouf4f")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Name" type="Label" parent="Control"]
+layout_mode = 1
+offset_left = 471.0
+offset_top = 45.0
+offset_right = 602.0
+offset_bottom = 68.0
+text = "Spider Fight Club"
+
+[node name="Button" type="Button" parent="Control"]
+layout_mode = 0
+offset_left = 508.0
+offset_top = 137.0
+offset_right = 554.0
+offset_bottom = 168.0
+text = "Start"
+
+[node name="Info" type="Label" parent="Control"]
+layout_mode = 0
+offset_left = 480.0
+offset_top = 613.0
+offset_right = 611.0
+offset_bottom = 636.0
+text = "Press 'E' or '.'"
+
+[connection signal="pressed" from="Control/Button" to="." method="_on_button_pressed"]

@@ -1,8 +1,38 @@
-[gd_scene load_steps=2 format=3 uid="uid://bhodhtvfd7e0x"]
+[gd_scene load_steps=3 format=3 uid="uid://bhodhtvfd7e0x"]
 
 [ext_resource type="Script" uid="uid://crdhfrnfe8fok" path="res://scripts/spawn_players.gd" id="1_bl13t"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_errlg"]
+size = Vector2(1162.5, 20)
+
 [node name="Node2D" type="Node2D"]
 
-[node name="Players" type="Node2D" parent="."]
+[node name="PlayerSpawnManager" type="Node2D" parent="."]
 script = ExtResource("1_bl13t")
+
+[node name="PlayareaWalls" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayareaWalls"]
+position = Vector2(569.75, -8)
+shape = SubResource("RectangleShape2D_errlg")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="PlayareaWalls"]
+position = Vector2(1161.0001, 304)
+rotation = 1.5676798
+scale = Vector2(0.99999994, 0.99999994)
+shape = SubResource("RectangleShape2D_errlg")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="PlayareaWalls"]
+position = Vector2(575, 658)
+shape = SubResource("RectangleShape2D_errlg")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="PlayareaWalls"]
+position = Vector2(-10, 345.99997)
+rotation = -1.5722947
+shape = SubResource("RectangleShape2D_errlg")
+
+[node name="PlayerSpawner" type="Node2D" parent="."]
+position = Vector2(157, 353)
+
+[node name="PlayerSpawner2" type="Node2D" parent="."]
+position = Vector2(958, 357)
