@@ -20,12 +20,12 @@ func _process(_delta: float) -> void:
 		ui_index -= 1
 		if ui_index < 0:
 			ui_index = len(ui)-1
-		$ColorRect.global_position = ui[ui_index].global_position + Vector2(-30,-30)
+		$ColorRect.global_position.y = ui[ui_index].global_position.y -15
 	if Input.is_action_just_pressed(keymap.down):
 		ui_index += 1
 		if ui_index >= len(ui):
 			ui_index = 0
-		$ColorRect.global_position = ui[ui_index].global_position + Vector2(-30,-30)
+		$ColorRect.global_position.y = ui[ui_index].global_position.y -15
 
 	if Input.is_action_just_pressed(keymap.left):
 		if ui_index == 0:

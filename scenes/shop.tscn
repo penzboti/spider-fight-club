@@ -1,9 +1,18 @@
-[gd_scene load_steps=3 format=3 uid="uid://cab8ewvl8bw6r"]
+[gd_scene load_steps=4 format=3 uid="uid://cab8ewvl8bw6r"]
 
+[ext_resource type="Texture2D" uid="uid://cgqoafirqhx4n" path="res://sprites/shop.jpg" id="1_1l46r"]
 [ext_resource type="Script" uid="uid://b7fmugvagytgs" path="res://scripts/global_ready.gd" id="2_xfvoa"]
 [ext_resource type="PackedScene" uid="uid://lnwbof5s0xcp" path="res://scenes/shop_half.tscn" id="3_1l46r"]
 
 [node name="Shop" type="Node2D"]
+
+[node name="Background" type="Sprite2D" parent="."]
+
+[node name="TextureRect" type="TextureRect" parent="Background"]
+modulate = Color(1, 1, 1, 0.3882353)
+offset_right = 1150.0
+offset_bottom = 649.0
+texture = ExtResource("1_1l46r")
 
 [node name="BaseUI" type="Control" parent="."]
 layout_mode = 3
@@ -13,32 +22,35 @@ offset_bottom = 40.0
 
 [node name="Shop" type="Label" parent="BaseUI"]
 layout_mode = 0
-offset_left = 510.0
-offset_top = -2.0
-offset_right = 550.0
-offset_bottom = 21.0
+offset_left = 536.0
+offset_top = 3.0
+offset_right = 613.0
+offset_bottom = 48.0
+theme_override_font_sizes/font_size = 32
 text = "Shop"
 
 [node name="Ready" type="Label" parent="BaseUI"]
 layout_mode = 0
-offset_left = 497.0
-offset_top = 623.0
-offset_right = 581.0
-offset_bottom = 646.0
+offset_left = 498.0
+offset_top = 599.0
+offset_right = 664.0
+offset_bottom = 644.0
+theme_override_font_sizes/font_size = 32
 text = "Ready? 0/2"
 script = ExtResource("2_xfvoa")
 
 [node name="Line2D" type="Line2D" parent="BaseUI"]
-position = Vector2(2, 27.114697)
+position = Vector2(48.999996, 27.000002)
 scale = Vector2(1, 0.9265232)
-points = PackedVector2Array(531, 66, 530.99994, 369.10004, 531, 604)
+points = PackedVector2Array(531, 66, 531, 604)
 
 [node name="Info" type="Label" parent="BaseUI"]
 layout_mode = 0
-offset_left = 409.0
-offset_top = 19.0
-offset_right = 652.0
-offset_bottom = 42.0
+offset_left = 398.0
+offset_top = 37.0
+offset_right = 778.0
+offset_bottom = 72.0
+theme_override_font_sizes/font_size = 25
 text = "Spend your hp on legs or hands"
 
 [node name="ShopHalf" parent="." instance=ExtResource("3_1l46r")]

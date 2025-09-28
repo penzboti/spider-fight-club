@@ -1,9 +1,18 @@
-[gd_scene load_steps=2 format=3 uid="uid://bu83i7rrcwahr"]
+[gd_scene load_steps=3 format=3 uid="uid://bu83i7rrcwahr"]
 
 [ext_resource type="Script" uid="uid://2fjhqeq8nyhp" path="res://scripts/start_menu.gd" id="1_ouf4f"]
+[ext_resource type="Texture2D" uid="uid://8vb6h6rar54r" path="res://sprites/background.jpg" id="2_thu50"]
 
 [node name="StartMenu" type="Node2D"]
 script = ExtResource("1_ouf4f")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+
+[node name="TextureRect" type="TextureRect" parent="Sprite2D"]
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(0.9, 0.9)
+texture = ExtResource("2_thu50")
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
@@ -13,26 +22,29 @@ offset_bottom = 40.0
 
 [node name="Name" type="Label" parent="Control"]
 layout_mode = 1
-offset_left = 471.0
+offset_left = 384.0
 offset_top = 45.0
-offset_right = 602.0
-offset_bottom = 68.0
+offset_right = 751.0
+offset_bottom = 108.0
+theme_override_font_sizes/font_size = 45
 text = "Spider Fight Club"
 
 [node name="Button" type="Button" parent="Control"]
 layout_mode = 0
-offset_left = 508.0
-offset_top = 137.0
-offset_right = 554.0
-offset_bottom = 168.0
+offset_left = 512.0
+offset_top = 178.0
+offset_right = 626.0
+offset_bottom = 249.0
+theme_override_font_sizes/font_size = 45
 text = "Start"
 
 [node name="Info" type="Label" parent="Control"]
 layout_mode = 0
-offset_left = 480.0
-offset_top = 613.0
-offset_right = 611.0
-offset_bottom = 636.0
+offset_left = 467.0
+offset_top = 271.0
+offset_right = 671.0
+offset_bottom = 316.0
+theme_override_font_sizes/font_size = 32
 text = "Press 'E' or '.'"
 
 [connection signal="pressed" from="Control/Button" to="." method="_on_button_pressed"]

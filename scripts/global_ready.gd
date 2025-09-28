@@ -4,7 +4,7 @@ var number: int = 0
 
 func _ready() -> void:
 	for child in $"../../".get_children():
-		if child is Node2D:
+		if child is Node2D and child is not Sprite2D:
 			var children = child.get_node("Control/Ready")
 			if not children.toggled.is_connected(_on_toggled):
 				children.toggled.connect(_on_toggled)

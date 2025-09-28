@@ -1,11 +1,30 @@
-[gd_scene load_steps=3 format=3 uid="uid://bhodhtvfd7e0x"]
+[gd_scene load_steps=5 format=3 uid="uid://bhodhtvfd7e0x"]
 
 [ext_resource type="Script" uid="uid://crdhfrnfe8fok" path="res://scripts/spawn_players.gd" id="1_bl13t"]
+[ext_resource type="Texture2D" uid="uid://8vb6h6rar54r" path="res://sprites/background.jpg" id="2_bl13t"]
+[ext_resource type="Texture2D" uid="uid://omybfqdaq3ew" path="res://sprites/spiderweb.png" id="2_iyx0m"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_errlg"]
 size = Vector2(1162.5, 20)
 
 [node name="Node2D" type="Node2D"]
+
+[node name="Background" type="Sprite2D" parent="."]
+
+[node name="BG" type="TextureRect" parent="Background"]
+modulate = Color(1, 1, 1, 0.32941177)
+offset_right = 1280.0
+offset_bottom = 720.0
+scale = Vector2(0.9, 0.9)
+texture = ExtResource("2_bl13t")
+expand_mode = 2
+
+[node name="WEB" type="TextureRect" parent="Background"]
+modulate = Color(18.892157, 18.892157, 18.892157, 0.6509804)
+offset_top = -66.0
+offset_right = 1150.0
+offset_bottom = 649.0
+texture = ExtResource("2_iyx0m")
 
 [node name="PlayerSpawnManager" type="Node2D" parent="."]
 script = ExtResource("1_bl13t")
