@@ -58,12 +58,15 @@ func flail_arms_toward_enemies() -> void:
 	
 	# Flail all arms
 	if enemy:
+		# Get the enemy's actual position from their CharacterBody2D
+		var enemy_pos = enemy.get_node("CharacterBody2D").global_position
 		for arm in armInstances.values():
 			if arm:
+				# Apply force to each segment directly
 				for child in arm.get_children():
-					if child.has_method("fling"):
-						var direction = (enemy.global_position - child.global_position).normalized()
-						child.fling(direction * 500)
+					if child is RigidBody2D:
+						var direction = (enemy_pos - child.global_position).normalized()
+						child.apply_impulse(direction * 500)
 
 func take_damage() -> void:
 	if is_invincible():

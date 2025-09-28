@@ -20,6 +20,10 @@ config/icon="res://sprites/icon.svg"
 PlayerManager="*res://globals/player_manager.gd"
 Audio="*res://audio/audio.tscn"
 
+[display]
+
+window/stretch/mode="viewport"
+
 [input]
 
 w={
