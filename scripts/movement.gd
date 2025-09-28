@@ -15,7 +15,13 @@ func set_hp(new_hp):
 var hp_label
 
 func _ready() -> void:
+	# Set collision layer for player (layer 1) and avoid limbs (layer 2)
+	collision_layer = 1
+	collision_mask = 1  # Only collide with other players/environment, not limbs
 	set_hp(hp)  # Set initial HP value
+	for i in %LimbAttachPoints.get_children() as Array[Marker2D]:
+		var offset = i.position - position
+		i.set_meta("offset", offset*scale.x)
 
 func _physics_process(delta: float) -> void:
 	var keymap = get_parent().data.keymap
@@ -39,6 +45,8 @@ func _physics_process(delta: float) -> void:
 		velocity.y /= 2**0.5
 
 	move_and_collide(Vector2(velocity.x, velocity.y)*0.05)
+	for i in %LimbAttachPoints.get_children():
+		i.position = position + i.get_meta("offset")
 
 func _on_leg_pressed() -> void:
 	speed += 5000  # Get speed from leg

@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://bolbrsqcnlyyd" path="res://scripts/complete_limb.gd" id="1_asfas"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_asfas"]
+radius = 0.01
 
 [node name="CompleteLimb" type="Node2D"]
 script = ExtResource("1_asfas")
@@ -11,3 +12,4 @@ script = ExtResource("1_asfas")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
 shape = SubResource("CircleShape2D_asfas")
+disabled = true

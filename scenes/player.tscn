@@ -40,3 +40,46 @@ offset_top = 14.0
 offset_right = 47.0
 offset_bottom = 37.0
 text = "hape"
+
+[node name="LimbAttachPoints" type="Node2D" parent="CharacterBody2D"]
+unique_name_in_owner = true
+
+[node name="0" type="Marker2D" parent="CharacterBody2D/LimbAttachPoints"]
+position = Vector2(60, -56)
+scale = Vector2(0.25, 0.25)
+metadata/offset = Vector2(0, 0)
+
+[node name="1" type="Marker2D" parent="CharacterBody2D/LimbAttachPoints"]
+position = Vector2(0, 80)
+scale = Vector2(0.25, 0.25)
+metadata/offset = Vector2(0, 0)
+
+[node name="2" type="Marker2D" parent="CharacterBody2D/LimbAttachPoints"]
+position = Vector2(56, 56)
+scale = Vector2(0.25, 0.25)
+metadata/offset = Vector2(0, 0)
+
+[node name="3" type="Marker2D" parent="CharacterBody2D/LimbAttachPoints"]
+position = Vector2(-60, 56)
+scale = Vector2(0.25, 0.25)
+metadata/offset = Vector2(0, 0)
+
+[node name="4" type="Marker2D" parent="CharacterBody2D/LimbAttachPoints"]
+position = Vector2(-84, 0)
+scale = Vector2(0.25, 0.25)
+metadata/offset = Vector2(0, 0)
+
+[node name="5" type="Marker2D" parent="CharacterBody2D/LimbAttachPoints"]
+position = Vector2(-56, -56)
+scale = Vector2(0.25, 0.25)
+metadata/offset = Vector2(0, 0)
+
+[node name="6" type="Marker2D" parent="CharacterBody2D/LimbAttachPoints"]
+position = Vector2(80, 0)
+scale = Vector2(0.25, 0.25)
+metadata/offset = Vector2(0, 0)
+
+[node name="7" type="Marker2D" parent="CharacterBody2D/LimbAttachPoints"]
+position = Vector2(0, -80)
+scale = Vector2(0.25, 0.25)
+metadata/offset = Vector2(0, 0)

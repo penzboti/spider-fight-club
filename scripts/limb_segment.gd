@@ -1,9 +1,13 @@
 extends RigidBody2D
 @export var segment_length: float = 100.0
-@export var segment_width: float = 0
-@export var segment_mass: float = 0
+@export var segment_width: float = 0.0
+@export var color: Color = Color(1, 1, 1, 1)
 
 func _ready():
+	# Set collision layer for limbs (layer 2) and avoid players (layer 1)
+	collision_layer = 2
+	collision_mask = 2  # Only collide with other limbs, not players
+	
 	# ensure sizes are valid integers for image creation and shape
 	if segment_length <= 0:
 		segment_length = 1.0
@@ -28,10 +32,19 @@ func _ready():
 	var img_w = int(ceil(segment_length))
 	var img_h = int(ceil(segment_width))
 	var image = Image.create(img_w, img_h, false, Image.FORMAT_RGBA8)
-	image.fill(Color(1, 1, 1, 1))
+	image.fill(color)
 	$SegmentSprite.texture = ImageTexture.create_from_image(image)
 	
 
 func fling(force: Vector2):
 	var end_point = Vector2(segment_length, 0)
 	apply_impulse(force, end_point)
+
+func _set_color(new_color: Color) -> void:
+	color = new_color
+	if $SegmentSprite.texture:
+		var img_w = int(ceil(segment_length))
+		var img_h = int(ceil(segment_width))
+		var image = Image.create(img_w, img_h, false, Image.FORMAT_RGBA8)
+		image.fill(color)
+		$SegmentSprite.texture = ImageTexture.create_from_image(image)
