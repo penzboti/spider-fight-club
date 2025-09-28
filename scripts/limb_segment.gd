@@ -6,16 +6,15 @@ extends RigidBody2D
 func _ready():
 	# Set collision layer for limbs (layer 2) and avoid players (layer 1)
 	collision_layer = 2
-	collision_mask = 2  # Only collide with other limbs, not players
-	
+	collision_mask = 1  # Only collide with other limbs, not players
+	contact_monitor = true
+	max_contacts_reported = 80	
 	# ensure sizes are valid integers for image creation and shape
 	if segment_length <= 0:
 		segment_length = 1.0
 	if segment_width <= 0:
 		segment_width = 1.0
 	# continuous_cd = RigidBody2D.CCD_MODE_CAST_SHAPE
-	# contact_monitor = true
-	# max_contacts_reported = 5
 	# update collision shape size if it's a RectangleShape2D
 	var shape = $SegmentCollision.shape
 	if shape and shape is RectangleShape2D:
@@ -34,7 +33,7 @@ func _ready():
 	var image = Image.create(img_w, img_h, false, Image.FORMAT_RGBA8)
 	image.fill(color)
 	$SegmentSprite.texture = ImageTexture.create_from_image(image)
-	
+	body_entered.connect(_on_body_entered)
 
 func fling(force: Vector2):
 	var end_point = Vector2(segment_length, 0)
@@ -48,3 +47,11 @@ func _set_color(new_color: Color) -> void:
 		var image = Image.create(img_w, img_h, false, Image.FORMAT_RGBA8)
 		image.fill(color)
 		$SegmentSprite.texture = ImageTexture.create_from_image(image)
+
+func _on_body_entered(body):
+	if get_parent() and get_parent().has_method("_on_collision"):
+		get_parent()._on_collision(body)
+
+func _set_alpha(a: float) -> void:
+	color.a = a
+	_set_color(color)

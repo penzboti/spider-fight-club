@@ -5,7 +5,9 @@ extends Node2D
 @export var type: String
 @export var color: Color = Color(1, 1, 1, 1)
 @export var attachment_point: Node2D = null
-
+@export var identifier: String = ""
+var cooldown: float = 2.0
+var cooldown_timer: Timer
 const segment = preload("res://scenes/limb_segment.tscn")
 
 func base(settype, setcolor: Color=Color(1, 1, 1, 1), setsegment_count: int=3, setsegment_length: float=100, setsegment_width: float=11, setattachment_point: Node2D=null) -> void:
@@ -15,6 +17,7 @@ func base(settype, setcolor: Color=Color(1, 1, 1, 1), setsegment_count: int=3, s
 	segment_length = setsegment_length
 	segment_width = setsegment_width
 	attachment_point = setattachment_point
+	
 
 func _ready():
 	# assume the first child is the StaticBody2D anchor from the scene
@@ -51,9 +54,37 @@ func _ready():
 
 func _physics_process(_delta: float) -> void:
 	get_child(0).position = attachment_point.position
-
+	if cooldown_timer is Timer and cooldown_timer.time_left <= 0:
+		cooldown_timer.queue_free()
+		cooldown_timer = null
+		for i in get_children():
+			if i is RigidBody2D:
+				i._set_alpha(1.0)
+	elif cooldown_timer is Timer and cooldown_timer.time_left > 0:
+		for i in get_children():
+			if i is RigidBody2D:
+				i._set_alpha(0.5)
 func _set_color(new_color: Color) -> void:
 	color = new_color
 	for i in get_children():
 		if i is RigidBody2D:
 			i._set_color(color)
+
+
+func _on_collision(body):
+	if type != "arm":
+		return
+	if cooldown_timer is Timer and cooldown_timer.time_left > 0:
+		return
+	# Walk up the tree to find the arm parent
+	var arm_parent = get_parent()
+	while arm_parent and not arm_parent.has_method("handle_arm_collision"):
+		arm_parent = arm_parent.get_parent()
+	
+	if arm_parent:
+		if arm_parent.handle_arm_collision(self, body):
+			cooldown_timer = Timer.new()
+			cooldown_timer.wait_time = cooldown
+			cooldown_timer.one_shot = true
+			add_child(cooldown_timer)
+			cooldown_timer.start()
