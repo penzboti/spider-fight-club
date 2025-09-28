@@ -40,8 +40,6 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	display_hp()
-	if Input.is_action_just_pressed(data.keymap.use):
-		take_damage()
 	_update_invincibility(delta)
 
 func take_damage() -> void:
@@ -103,7 +101,7 @@ func handle_arm_collision(arm: Node2D, body: Node) -> bool:
 
 	if body.has_meta("id") and body.get_meta("id") != self.get_meta("id"):
 		var other_player = body
-		other_player.get_parent().take_damage(1)
+		other_player.get_parent().take_damage()
 		data.arms[int(arm.identifier[-1])] -= 1
 		if data.arms[int(arm.identifier[-1])] <= 0:
 			data.arms.remove_at(int(arm.identifier[-1]))
