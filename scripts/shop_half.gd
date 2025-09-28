@@ -6,15 +6,22 @@ var data: PlayerData
 @onready var ui = [$Control/Leg, $Control/Arm, $Control/Ready]
 var ui_index = 0
 
+@export var invincibility_duration: float = 1
+var _inv_timer: float = 0.0
+
 func _ready() -> void:
 	data = PlayerManager.get_or_create_player(index)
 	display_hp()
 	display_limb()
 	display_binds()
 	$Control/Wins.text = "Wins: " + str(data.victories)
+	start_invincibility()
 
-func _process(_delta: float) -> void:
+func _process(delta: float) -> void:
 	var keymap = data.keymap
+	_update_invincibility(delta)
+	if is_invincible():
+		return
 	
 	if Input.is_action_just_pressed(keymap.up):
 		ui_index -= 1
@@ -95,3 +102,15 @@ func display_binds():
 		movetype = "left / right"
 		usetype = "up / down"
 	$Control/Binds.text = "navigate with " + usetype + "\nadd / remove limbs with "+ movetype
+
+func start_invincibility() -> void:
+	_inv_timer = invincibility_duration # extend if currently invincible
+
+func is_invincible() -> bool:
+	return _inv_timer > 0.0
+
+func _update_invincibility(delta: float) -> void:
+	if _inv_timer > 0.0:
+		_inv_timer -= delta
+		if _inv_timer <= 0.0:
+			_inv_timer = 0.0

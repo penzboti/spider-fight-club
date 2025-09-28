@@ -65,7 +65,6 @@ func flail_arms_toward_enemies() -> void:
 						var direction = (enemy.global_position - child.global_position).normalized()
 						child.fling(direction * 500)
 
-
 func take_damage() -> void:
 	if is_invincible():
 		return
