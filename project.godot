@@ -18,6 +18,7 @@ config/icon="res://sprites/icon.svg"
 [autoload]
 
 PlayerManager="*res://globals/player_manager.gd"
+Audio="*res://audio/audio.tscn"
 
 [input]
 

@@ -30,6 +30,7 @@ theme_override_font_sizes/font_size = 32
 text = "Shop"
 
 [node name="Ready" type="Label" parent="BaseUI"]
+z_index = 4
 layout_mode = 0
 offset_left = 498.0
 offset_top = 599.0
@@ -40,16 +41,16 @@ text = "Ready? 0/2"
 script = ExtResource("2_xfvoa")
 
 [node name="Line2D" type="Line2D" parent="BaseUI"]
-position = Vector2(48.999996, 27.000002)
+position = Vector2(52.999996, 27)
 scale = Vector2(1, 0.9265232)
 points = PackedVector2Array(531, 66, 531, 604)
 
 [node name="Info" type="Label" parent="BaseUI"]
 layout_mode = 0
 offset_left = 398.0
-offset_top = 37.0
+offset_top = 41.0
 offset_right = 778.0
-offset_bottom = 72.0
+offset_bottom = 76.0
 theme_override_font_sizes/font_size = 25
 text = "Spend your hp on legs or hands"
 

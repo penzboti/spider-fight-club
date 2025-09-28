@@ -84,10 +84,9 @@ func display_binds():
 	var movetype = "none"
 	var usetype = "none"
 	if data.keymap.get("up") == "w":
-		movetype = "WASD"
-		usetype = "E"
+		movetype = "'a' / 'd'"
+		usetype = "'w' / 's'"
 	else:
-		movetype = "arrow keys"
-		usetype = "."
-	$Control/Binds.text = "Move with " + movetype + ", and use/press with '" + usetype + "'
-	Change the limb counts with horizontal movement keys"
+		movetype = "left / right"
+		usetype = "up / down"
+	$Control/Binds.text = "navigate with " + usetype + "\nadd / remove limbs with "+ movetype

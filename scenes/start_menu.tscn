@@ -20,6 +20,14 @@ anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
+[node name="ColorRect" type="ColorRect" parent="Control"]
+layout_mode = 0
+offset_left = -3.0
+offset_top = 499.0
+offset_right = 1156.0
+offset_bottom = 650.0
+color = Color(0, 0, 0, 0.7137255)
+
 [node name="Name" type="Label" parent="Control"]
 layout_mode = 1
 offset_left = 384.0
@@ -46,5 +54,28 @@ offset_right = 671.0
 offset_bottom = 316.0
 theme_override_font_sizes/font_size = 32
 text = "Press 'E' or '.'"
+
+[node name="Binds1" type="Label" parent="Control"]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 497.0
+offset_right = 289.0
+offset_bottom = 650.0
+theme_override_font_sizes/font_size = 35
+text = "Player 1
+move with WASD
+use with 'e'"
+
+[node name="Binds2" type="Label" parent="Control"]
+layout_mode = 0
+offset_left = 782.0
+offset_top = 493.0
+offset_right = 1154.0
+offset_bottom = 646.0
+theme_override_font_sizes/font_size = 35
+text = "Player 2
+move with arrow keys
+use with '.'"
+horizontal_alignment = 2
 
 [connection signal="pressed" from="Control/Button" to="." method="_on_button_pressed"]
