@@ -9,6 +9,9 @@ const limb = preload("res://scenes/complete_limb.tscn")
 var legInstances: Dictionary = {}
 var armInstances: Dictionary = {}
 
+@export var invincibility_duration: float = 0.6
+var _inv_timer: float = 0.0
+
 func display_hp():
 	$CharacterBody2D/Control/Red_hp_bar.position =  Vector2(-max_hp*20, -160)
 	$CharacterBody2D/Control/Red_hp_bar.scale.x = max_hp
@@ -25,7 +28,6 @@ func _ready() -> void:
 	if not data.lives_changed.is_connected(_on_lives_changed):
 		data.lives_changed.connect(_on_lives_changed)
 
-
 	for i in range(data.legs):
 		var leg = spawn_limb("leg")
 		leg.identifier = "{data.id}_leg_{i}"
@@ -36,16 +38,30 @@ func _ready() -> void:
 	set_meta("id", data.id)
 	$CharacterBody2D.set_meta("id", data.id)
 
-func _process(_delta: float) -> void:
+func _process(delta: float) -> void:
 	display_hp()
 	if Input.is_action_just_pressed(data.keymap.use):
 		take_damage()
+	_update_invincibility(delta)
 
-
-func take_damage(i: int = 1) -> void:
-	data.lose_life(i)
+func take_damage() -> void:
+	if is_invincible():
+		return
+	start_invincibility()
+	data.lose_life(1)
 	$damage.play()
 
+func start_invincibility() -> void:
+	_inv_timer = invincibility_duration # extend if currently invincible
+
+func is_invincible() -> bool:
+	return _inv_timer > 0.0
+
+func _update_invincibility(delta: float) -> void:
+	if _inv_timer > 0.0:
+		_inv_timer -= delta
+		if _inv_timer <= 0.0:
+			_inv_timer = 0.0
 
 func _on_lives_changed(v: int) -> void:
 	hp = v
