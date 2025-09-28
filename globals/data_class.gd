@@ -25,7 +25,7 @@ const keymap_1 = {
 	"use": "use"
 }
 
-const arm_uses = 3
+const arm_uses = 2
 
 signal lives_changed(new_lives: int)
 signal death(dead_player: int)
@@ -34,12 +34,12 @@ func new_run() -> void:
 	if lives <= 0:
 		arms.clear()
 		legs = 0
-		lives = 9
+		lives = 5
 	else:
 		remove_limb("arm", true)
 		for arm in arms:
 			arm = arm_uses
-		lives = 5
+		lives += 2
 
 func new_limb(type) -> bool:
 	var n = len(arms) + legs

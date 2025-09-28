@@ -9,6 +9,9 @@ const limb = preload("res://scenes/complete_limb.tscn")
 var legInstances: Dictionary = {}
 var armInstances: Dictionary = {}
 
+@export var invincibility_duration: float = 0.6
+var _inv_timer: float = 0.0
+
 func display_hp():
 	$CharacterBody2D/Control/Red_hp_bar.position =  Vector2(-max_hp*20, -160)
 	$CharacterBody2D/Control/Red_hp_bar.scale.x = max_hp
@@ -25,7 +28,6 @@ func _ready() -> void:
 	if not data.lives_changed.is_connected(_on_lives_changed):
 		data.lives_changed.connect(_on_lives_changed)
 
-
 	for i in range(data.legs):
 		var leg = spawn_limb("leg")
 		leg.identifier = "{data.id}_leg_{i}"
@@ -39,7 +41,7 @@ func _ready() -> void:
 	# Add to players group for easy enemy detection
 	add_to_group("players")
 
-func _process(_delta: float) -> void:
+func _process(delta: float) -> void:
 	display_hp()
 	if Input.is_action_just_pressed(data.keymap.use):
 		flail_arms_toward_enemies()
@@ -61,11 +63,26 @@ func flail_arms_toward_enemies() -> void:
 					if child.has_method("fling"):
 						var direction = (enemy.global_position - child.global_position).normalized()
 						child.fling(direction * 500)
+	_update_invincibility(delta)
 
-func take_damage(i: int = 1) -> void:
-	data.lose_life(i)
+func take_damage() -> void:
+	if is_invincible():
+		return
+	start_invincibility()
+	data.lose_life(1)
 	$damage.play()
 
+func start_invincibility() -> void:
+	_inv_timer = invincibility_duration # extend if currently invincible
+
+func is_invincible() -> bool:
+	return _inv_timer > 0.0
+
+func _update_invincibility(delta: float) -> void:
+	if _inv_timer > 0.0:
+		_inv_timer -= delta
+		if _inv_timer <= 0.0:
+			_inv_timer = 0.0
 
 func _on_lives_changed(v: int) -> void:
 	hp = v
@@ -107,7 +124,7 @@ func handle_arm_collision(arm: Node2D, body: Node) -> bool:
 
 	if body.has_meta("id") and body.get_meta("id") != self.get_meta("id"):
 		var other_player = body
-		other_player.get_parent().take_damage(1)
+		other_player.get_parent().take_damage()
 		var arm_index = int(arm.identifier[-1])
 		
 		# Check if the arm index is valid

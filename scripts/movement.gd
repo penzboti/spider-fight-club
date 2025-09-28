@@ -4,6 +4,9 @@ extends CharacterBody2D
 var speed = 0
 var inertia: float = float(1) / float(25)
 
+@export var push_strength: int = 3500
+var knockback := Vector2.ZERO
+
 func _ready() -> void:
 	collision_layer = 1
 	collision_mask = 1
@@ -36,6 +39,28 @@ func _physics_process(delta: float) -> void:
 		velocity.x /= 2**0.5
 		velocity.y /= 2**0.5
 
-	move_and_collide(velocity * delta)
+	var c := move_and_collide(velocity * delta)
+	if c:
+		var other := c.get_collider()
+		if other is CharacterBody2D:
+			if $"..".is_invincible():
+				return
+			$"..".take_damage()
+			other.get_node("..").take_damage()
+			#if get_instance_id() < other.get_instance_id():
+			#print("very bumm")
+			var n := c.get_normal()              # normal points from other -> self
+			var self_push  :=  push_strength * n
+			var other_push :=  push_strength * -n
+
+			apply_knockback(self_push)
+			if other.has_method("apply_knockback"):
+				other.apply_knockback(other_push)
+	
 	for i in %LimbAttachPoints.get_children():
 		i.position = position + i.get_meta("offset")
+		
+
+func apply_knockback(impulse: Vector2) -> void:
+	#print("kb")
+	velocity += impulse
