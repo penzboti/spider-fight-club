@@ -76,7 +76,7 @@ func take_damage() -> void:
 	$damage.play()
 
 func start_invincibility() -> void:
-	_inv_timer = invincibility_duration # extend if currently invincible
+	#_inv_timer = invincibility_duration # extend if currently invincible
 
 func is_invincible() -> bool:
 	return _inv_timer > 0.0
